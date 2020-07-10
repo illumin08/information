@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+   <link rel="stylesheet" href="/static/css/layui.css" media="all">
+</head>
+<body>
+
+
+
+<div style="margin-left: 300px">
+    <img style="margin-left: 190px;margin-bottom: 30px" src="http://img3.youzy.cn/content/media/thumbs/p00208392.png" alt="" >
+
+    <form action="/login" method="post">
+        <label class="col-sm-2 control-label">用户名</label>
+        <input style="width: 500px"  class="form-control" type="text" name="username" placeholder="用户名....">
+        <label style="margin-top: 30px" class="col-sm-2 control-label">密码</label>
+        <input style="width: 500px;margin-top: 30px" class="form-control" type="text" name="password" placeholder="密码....">
+
+        <!--    <a href="/sendcode">使用手机验证</a>-->
+
+        <input class="btn btn-info"  style="width: 300px;margin: 30px 190px" type="submit" value="登录">
+    </form>
+
+</div>
+
+<h2 th:text="${msg}"></h2>
+</body>
+</html>

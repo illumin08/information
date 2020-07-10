@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>问题</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+    <<link rel="stylesheet" href="/static/css/layui.css" media="all">
+    <style>
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type="radio"] + span {
+            display: inline-block;
+            width: 150px;
+            height: 50px;
+            font-size: 24px;
+            line-height: 50px;
+            text-align: center;
+            border: 1px solid #999;
+            background-color: #fff;
+            margin: 24px 20px;
+            border-radius: 25px;
+        }
+
+        input[type="radio"]:checked + span {
+            border: 3px solid whitesmoke;
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+<!--<view th:each="list:${list}">-->
+<!--    <li class="active"  th:text="${list.question}" ></li>-->
+<!--    <li class="active" th:text="${list.type}" ></li>-->
+
+<!--</view>-->
+
+
+
+
+<form action="/display" style="font-size: 16px">
+
+    <div class="cadrborder">
+        <div style="padding-left: 28px;">
+<!--            <label><input type="radio"  class="btn btn-default" name="type"  value=""/><span>全部</span></label>-->
+            <label><input type="radio"   class="btn btn-info" name="type" value="学校"/><span>学校</span></label>
+            <label><input type="radio"   class="btn btn-info"  name="type" value="专业"/><span>专业</span></label>
+            <label><input type="radio"  class="btn btn-info"  name="type" value="学校分数线"/><span>学校分数线</span></label>
+            <div class="btn btn-default"  style="margin-left: 30px" ><span th:text="${session.user.username}"></span></div>
+        </div>
+
+
+
+    </div>
+
+    <button type="submit" class="btn btn-info"  style="width: 200px;margin: 10px 70px" >搜索</button>
+    <button type="button" class="btn btn-success" style="width: 200px;margin: 20px 70px" onclick="next()">增加</button>
+
+</form>
+
+<div class="container-fluid" style="margin-top: 50px">
+    <ul style="margin-bottom: 22px;padding-left: 0"   th:each="list:${list}" >
+        <div class="media">
+            <a class="pull-left" href="#">
+
+            </a>
+            <ol class="schooltitle">
+                <ul class="active" style="font-size: 16px;float: left" th:text="${list.question}" ></ul>
+                <div style="position: absolute;right: 300px">author:<div th:text="${list.author}"></div></div>
+<!--                <li class="active" th:text="${list.type}" ></li>-->
+                <a style="float: left;position: absolute;right: 200px" href="" th:href="@{display/{id}/edit(id=${list.question})}" class="ui mini teal basic button">编辑</a>
+                <a style="float: left;position:absolute;right: 130px" href="#" th:href="@{display/{id}/delete(id=${list.question})}" class="ui mini red basic button">删除</a>
+            </ol>
+
+
+
+
+        </div>
+        <hr>
+    </ul>
+</div>
+
+
+
+
+
+<!--<div class="container-fluid">-->
+
+<!--    <ul style="margin-bottom: 22px;padding-left: 0"  class="hide"  id="re"   th:each="que:${allquestion}">-->
+<!--        <div class="media">-->
+<!--            <a class="pull-left" href="#">-->
+
+<!--            </a>-->
+
+<!--            <ol class="schooltitle">-->
+<!--                <li  class="" id="que" th:text="${que.question}" ></li>-->
+
+<!--            </ol>-->
+
+<!--        </div>-->
+<!--        <hr>-->
+<!--    </ul>-->
+<!--</div>-->
+
+</body>
+<script>
+    function next() {
+
+            window.location.href = 'question';
+
+    }
+
+
+
+</script>
+
+<script th:inline="javascript">
+    var user = [[${session.user.username}]];// session(后台是user)
+
+
+    function next() {
+        if (user != null) {
+            window.location.href = 'question';
+        } else {
+            window.location.href = 'login';
+    }
+    }
+</script>
+
+</html>

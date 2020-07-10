@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+    <link rel="stylesheet" href="/static/css/layui.css" media="all">
+</head>
+<body>
+
+
+<div th:each="list:${tag[0]}">
+<form action="/edit" method="post" >
+
+
+
+    <label style="font-size: 24px;margin: 30px">问题:</label>
+    <textarea  class="form-control" rows="3" type="text" name="question" id="qe" placeholder="提问...." th:text="${list.question}" ></textarea>
+
+
+    <label style="font-size: 24px;margin: 30px">类型:</label>
+
+<!--    <input class="form-control" type="text" name="type" style="margin-top: 30px" placeholder="类型...."    >-->
+
+
+    <SELECT   class="form-control"   name="type" id="selectconfig" >
+        <!--        <OPTION  value="">新增</OPTION>-->
+        <OPTION  value="学校">学校</OPTION>
+        <OPTION  value="专业">专业</OPTION>
+        <OPTION  value="学校分数线">学校分数线</OPTION>
+    </SELECT>
+
+
+
+
+
+
+
+
+    <input class="btn btn-primary btn-lg active" style="margin: 30px 490px;width: 400px"  type="submit" value="提交"/>
+
+    </div>
+</form>
+
+
+
+
+</body>
+
+<script th:inline="javascript">
+
+    var user = [[${session.user.username}]];
+    document.getElementById('author').value=user;
+
+    var question=[[${tag.question}]];
+    document.getElementById("question").value=question;
+</script>
+</html>
